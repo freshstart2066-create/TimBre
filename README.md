@@ -28,11 +28,12 @@ Underneath its tactile exterior lies the **Archangel Audio Studio**—a comprehe
 ## ✨ Key Features
 
 ### 🎛️ 1. Archangel Audio Studio & 10-Band Precision EQ
-* **10-Band Parametric Equalizer**: Calibrated frequency bands (`32Hz`, `64Hz`, `125Hz`, `250Hz`, `500Hz`, `1kHz`, `2kHz`, `4kHz`, `8kHz`, `16kHz`) with ±12 dB precision faders.
+* **10-Band Parametric Equalizer**: Calibrated frequency bands (`32Hz`, `64Hz`, `125Hz`, `250Hz`, `500Hz`, `1kHz`, `2kHz`, `4kHz`, `8kHz`, `16kHz`) with ±12 dB precision faders and surgical $Q$ factor bandwidth control.
 * **Audiophile EQ Presets**: Includes *Audiophile Pure*, *Acoustic*, *Bass Booster*, *Classical*, *Electronic*, *Flat*, *Hip-Hop*, *Jazz*, *Late Night*, *Pop*, *R&B*, *Rock*, *Spoken Word*, and *Vocal Booster*.
+* **🏛️ Hardware Convolver Reverb**: Synthetic impulse response convolution simulating acoustic spaces (*Studio*, *Concert Hall*, *Cathedral 3D*, *Plate*) with dynamic dry/wet audio blending.
+* **🌐 3D Spatial Soundstage & Bauer Crossfeed (BS2B)**: Dual-channel stereophonic-to-binaural crossfeed and spatial panner simulating wide speaker placement to alleviate headphone fatigue.
 * **Archangel Sound Check (ITU-R BS.1770 / EBU R128)**: Automatic loudness normalization targeted at `-16 LUFS` with true-peak limiter to eliminate jarring volume spikes across tracks.
 * **Archangel Headphone Accommodations & Custom Audiogram**: Interactive SVG frequency curve allowing users to drag calibration nodes to adjust for individual ear sensitivities and hearing profiles.
-* **Archangel Spatial Audio (Bauer BS2B Binaural Crossfeed)**: Simulates the natural acoustic crosstalk of stereo speakers in a room, dramatically reducing headphone listening fatigue.
 * **Archangel Late Night Compression (DRC)**: High-ratio dynamic range compressor with fast attack and release for evening listening.
 * **Physical Hardware Rotary Knobs**: Interactive rotary dials for **BASS** (100 Hz), **VOLUME** (Master Gain), and **TREBLE** (8 kHz) responding to rotational drag gestures.
 * **Live Stereo Decibel Peak & RMS VU Meter**: High-refresh dual-channel visualizer monitoring `L` and `R` signals in real time with clipping indicators.
@@ -54,10 +55,16 @@ Underneath its tactile exterior lies the **Archangel Audio Studio**—a comprehe
 ---
 
 ### 🎧 4. Deep Neumorphic Notification & Lock Screen Controls
+* **Custom Deep Neumorphic Android Notification (`RemoteViews`)**: Custom collapsed and expanded notification cards styled with extruded tactile surfaces, high-contrast album art, progress bar, and physical neumorphic button controls.
 * **Android MediaSession Integration**: Emits system media metadata and playback state directly to the Android OS.
-* **Notification Shade Controls**: Control playback (Play/Pause, Skip, Previous, Progress) right from your quick settings and notification shade.
-* **Privacy-Friendly Lock Screen**: Standard lock screen media controls without invasive full-screen application overrides.
+* **Privacy-Friendly Lock Screen**: Clean system lock screen media controls without invasive full-screen application overrides.
 * **Background Playback**: Seamless playback continues while multitasking or when the screen is turned off.
+
+---
+
+### ⚙️ 5. Automated CI/CD & Modular Architecture
+* **GitHub Actions Workflow**: Automated continuous integration pipeline (`.github/workflows/build-apk.yml`) building the Android Debug APK and publishing releases directly on GitHub.
+* **Clean Modular Architecture**: Clean separation into dedicated CSS modules (`variables.css`, `base.css`, `components.css`, `now-playing.css`, `equalizer.css`, `library.css`) and ES6 JavaScript engines (`dsp-engine.js`, `player.js`, `lyrics.js`, `library.js`, `ui.js`, `app.js`).
 
 ---
 

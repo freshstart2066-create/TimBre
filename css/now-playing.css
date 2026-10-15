@@ -1,0 +1,218 @@
+/* ========================================================
+   TimBre Now Playing View, Artwork, Synced Lyrics & Mini-Player
+   ======================================================== */
+
+.album-art-card {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 36px;
+  background: var(--bg);
+  box-shadow: var(--neu-card);
+  padding: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.album-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 26px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Synced Lyrics Sheet */
+.now-playing-lyrics-box {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 36px;
+  background: var(--bg);
+  box-shadow: var(--neu-inset);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.lyrics-top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(184, 198, 216, 0.4);
+}
+
+.lyrics-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 24px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lyrics-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.live-lyric-line {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-muted);
+  opacity: 0.55;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  text-align: left;
+}
+
+.live-lyric-line:hover {
+  opacity: 0.85;
+}
+
+.live-lyric-line.active {
+  color: var(--accent);
+  opacity: 1;
+  font-size: 19px;
+  font-weight: 800;
+  transform: scale(1.02);
+  text-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.live-lyric-line.passed {
+  opacity: 0.35;
+  color: var(--text-main);
+}
+
+/* Track Meta Info */
+.track-meta-section {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.track-title-large {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+}
+
+.track-artist-sub {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* Scrubber / Progress Bar */
+.scrubber-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.scrubber-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  background: var(--bg);
+  box-shadow: var(--neu-inset-sm);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.scrubber-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  border-radius: 6px;
+  background: var(--accent-grad);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+  transition: width 0.08s linear;
+}
+
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* Controls Pod */
+.controls-pod {
+  margin-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+}
+
+/* Floating Glassmorphic Mini-Player */
+.mini-player-bar {
+  position: absolute;
+  bottom: calc(72px + env(safe-area-inset-bottom, 12px));
+  left: 14px;
+  right: 14px;
+  height: 60px;
+  border-radius: 20px;
+  background: rgba(235, 240, 247, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 28px rgba(175, 192, 215, 0.75), -6px -6px 18px #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  z-index: 90;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.mini-player-art {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.mini-player-meta {
+  flex: 1;
+  margin-left: 12px;
+  margin-right: 8px;
+  overflow: hidden;
+}
+
+.mini-player-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-main);
+}
+
+.mini-player-artist {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

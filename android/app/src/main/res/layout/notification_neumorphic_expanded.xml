@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/notif_expanded_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/notification_neu_bg"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Top Bar: App Badge & Close -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="TIMBRE • ARCHANGEL HI-FI STUDIO"
+            android:textColor="#2563eb"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05" />
+
+        <ImageButton
+            android:id="@+id/notif_btn_close"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/notification_btn_neu"
+            android:src="@drawable/ic_notif_close"
+            android:contentDescription="Close" />
+    </RelativeLayout>
+
+    <!-- Main Content Row: Artwork + Metadata -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/notif_expanded_art"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:background="@drawable/notification_art_bg"
+            android:scaleType="centerCrop"
+            android:contentDescription="Album Art" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/notif_expanded_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#18202d"
+                android:textSize="15.5sp"
+                android:textStyle="bold"
+                android:text="Blinding Lights" />
+
+            <TextView
+                android:id="@+id/notif_expanded_artist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#748398"
+                android:textSize="13sp"
+                android:text="The Weeknd" />
+
+            <TextView
+                android:id="@+id/notif_expanded_album"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#94a3b8"
+                android:textSize="11.5sp"
+                android:text="After Hours • 192kHz FLAC" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Linear Progress Bar -->
+    <ProgressBar
+        android:id="@+id/notif_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:max="1000"
+        android:progress="350"
+        android:progressTint="#2563eb"
+        android:progressBackgroundTint="#cbd5e1" />
+
+    <!-- Control Buttons Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="4dp">
+
+        <ImageButton
+            android:id="@+id/notif_expanded_prev"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/notification_btn_neu"
+            android:src="@drawable/ic_notif_prev"
+            android:contentDescription="Previous" />
+
+        <ImageButton
+            android:id="@+id/notif_expanded_play_pause"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="@drawable/notification_btn_neu"
+            android:src="@drawable/ic_notif_play"
+            android:contentDescription="Play/Pause" />
+
+        <ImageButton
+            android:id="@+id/notif_expanded_next"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/notification_btn_neu"
+            android:src="@drawable/ic_notif_next"
+            android:contentDescription="Next" />
+    </LinearLayout>
+</LinearLayout>

@@ -328,8 +328,49 @@ public class MediaPlaybackService extends Service {
                 this, 3, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
+        Intent stopIntent = new Intent(this, MediaPlaybackService.class).setAction(ACTION_STOP);
+        PendingIntent stopPendingIntent = PendingIntent.getService(
+                this, 4, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
         int playPauseIcon = currentIsPlaying ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
         String playPauseTitle = currentIsPlaying ? "Pause" : "Play";
+
+        // Deep Neumorphic Custom Collapsed RemoteViews
+        android.widget.RemoteViews collapsedView = new android.widget.RemoteViews(getPackageName(), R.layout.notification_neumorphic_collapsed);
+        collapsedView.setTextViewText(R.id.notif_title, currentTitle);
+        collapsedView.setTextViewText(R.id.notif_artist, currentArtist);
+        collapsedView.setImageViewResource(R.id.notif_btn_play_pause, currentIsPlaying ? R.drawable.ic_notif_pause : R.drawable.ic_notif_play);
+        collapsedView.setOnClickPendingIntent(R.id.notif_btn_prev, prevPendingIntent);
+        collapsedView.setOnClickPendingIntent(R.id.notif_btn_play_pause, playPausePendingIntent);
+        collapsedView.setOnClickPendingIntent(R.id.notif_btn_next, nextPendingIntent);
+        if (currentArtBitmap != null) {
+            collapsedView.setImageViewBitmap(R.id.notif_art, currentArtBitmap);
+        } else {
+            collapsedView.setImageViewResource(R.id.notif_art, R.mipmap.ic_launcher);
+        }
+
+        // Deep Neumorphic Custom Expanded RemoteViews
+        android.widget.RemoteViews expandedView = new android.widget.RemoteViews(getPackageName(), R.layout.notification_neumorphic_expanded);
+        expandedView.setTextViewText(R.id.notif_expanded_title, currentTitle);
+        expandedView.setTextViewText(R.id.notif_expanded_artist, currentArtist);
+        expandedView.setTextViewText(R.id.notif_expanded_album, (currentAlbum != null && !currentAlbum.isEmpty()) ? currentAlbum : "TimBre Hi-Fi");
+        expandedView.setImageViewResource(R.id.notif_expanded_play_pause, currentIsPlaying ? R.drawable.ic_notif_pause : R.drawable.ic_notif_play);
+        expandedView.setOnClickPendingIntent(R.id.notif_expanded_prev, prevPendingIntent);
+        expandedView.setOnClickPendingIntent(R.id.notif_expanded_play_pause, playPausePendingIntent);
+        expandedView.setOnClickPendingIntent(R.id.notif_expanded_next, nextPendingIntent);
+        expandedView.setOnClickPendingIntent(R.id.notif_btn_close, stopPendingIntent);
+        if (currentArtBitmap != null) {
+            expandedView.setImageViewBitmap(R.id.notif_expanded_art, currentArtBitmap);
+        } else {
+            expandedView.setImageViewResource(R.id.notif_expanded_art, R.mipmap.ic_launcher);
+        }
+
+        int progress = 0;
+        if (currentDuration > 0 && currentPosition >= 0) {
+            progress = (int) Math.min(1000, Math.max(0, ((double) currentPosition / currentDuration) * 1000));
+        }
+        expandedView.setProgressBar(R.id.notif_progress, 1000, progress, false);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
@@ -341,13 +382,9 @@ public class MediaPlaybackService extends Service {
                 .setOngoing(currentIsPlaying)
                 .setShowWhen(false)
                 .setOnlyAlertOnce(true)
-                .addAction(android.R.drawable.ic_media_previous, "Previous", prevPendingIntent)
-                .addAction(playPauseIcon, playPauseTitle, playPausePendingIntent)
-                .addAction(android.R.drawable.ic_media_next, "Next", nextPendingIntent)
-                .setStyle(new MediaStyle()
-                        .setMediaSession(mediaSession.getSessionToken())
-                        .setShowActionsInCompactView(0, 1, 2)
-                );
+                .setCustomContentView(collapsedView)
+                .setCustomBigContentView(expandedView)
+                .setStyle(new NotificationCompat.DecoratedCustomViewStyle());
 
         if (currentArtBitmap != null) {
             builder.setLargeIcon(currentArtBitmap);

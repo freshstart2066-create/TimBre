@@ -1,0 +1,30 @@
+:root {
+  --bg: #ebf0f7;
+  --surface: #edf2f9;
+  --neu-light: #ffffff;
+  --neu-dark: #b8c6d8;
+  --text-main: #18202d;
+  --text-muted: #748398;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-grad: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  --accent-glow: 0 8px 24px rgba(37, 99, 235, 0.45);
+  
+  /* Pure Sculpted Neumorphic Shadows */
+  --neu-flat: 10px 10px 22px var(--neu-dark), -10px -10px 22px var(--neu-light);
+  --neu-card: 16px 18px 36px rgba(175, 192, 215, 0.75), -16px -18px 36px #ffffff;
+  --neu-card-sm: 8px 10px 20px rgba(175, 192, 215, 0.65), -8px -10px 20px #ffffff;
+  --neu-btn: 7px 7px 16px rgba(184, 198, 216, 0.85), -7px -7px 16px #ffffff;
+  --neu-btn-pressed: inset 5px 5px 10px rgba(184, 198, 216, 0.9), inset -5px -5px 10px #ffffff;
+  --neu-inset: inset 6px 6px 14px rgba(184, 198, 216, 0.85), inset -6px -6px 14px #ffffff;
+  --neu-inset-deep: inset 8px 8px 18px rgba(175, 192, 215, 0.95), inset -8px -8px 18px #ffffff;
+  --neu-inset-sm: inset 4px 4px 8px rgba(184, 198, 216, 0.8), inset -4px -4px 8px #ffffff;
+  --neu-pill: 5px 5px 12px rgba(184, 198, 216, 0.8), -5px -5px 12px #ffffff;
+  --neu-pill-active: inset 4px 4px 8px rgba(184, 198, 216, 0.9), inset -4px -4px 8px #ffffff;
+  --neu-dial: 12px 14px 28px rgba(175, 192, 215, 0.85), -12px -14px 28px #ffffff;
+  
+  /* Glassmorphism Accents */
+  --glass-bg: rgba(235, 240, 247, 0.65);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+  --glass-blur: blur(20px);
+}

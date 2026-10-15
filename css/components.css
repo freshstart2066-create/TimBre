@@ -1,0 +1,272 @@
+/* ========================================================
+   TimBre Deep Neumorphic Components & Interactive Controls
+   ======================================================== */
+
+/* Tactile Icon Buttons */
+.icon-btn {
+  background: var(--bg);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--neu-btn);
+  border-radius: 18px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  outline: none;
+}
+
+.icon-btn:active, .icon-btn.active {
+  box-shadow: var(--neu-btn-pressed);
+  transform: scale(0.96);
+  color: var(--accent);
+}
+
+.icon-btn-lg {
+  width: 68px;
+  height: 68px;
+  border-radius: 26px;
+  background: var(--accent-grad);
+  box-shadow: 8px 10px 24px rgba(37, 99, 235, 0.4), -6px -6px 16px rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  border: none;
+}
+
+.icon-btn-lg:active {
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.35);
+  transform: scale(0.95);
+}
+
+/* Deep Neumorphic Bottom Navigation Bar */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(68px + env(safe-area-inset-bottom, 12px));
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+  background: var(--bg);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 -8px 24px rgba(184, 198, 216, 0.55), 0 -2px 6px rgba(255, 255, 255, 0.8);
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 52px;
+  border-radius: 18px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.nav-item i, .nav-item svg {
+  width: 21px;
+  height: 21px;
+  transition: transform 0.18s ease;
+}
+
+.nav-item span {
+  font-size: 10.5px;
+  font-weight: 700;
+  margin-top: 3px;
+  letter-spacing: -0.01em;
+}
+
+.nav-item.active {
+  color: var(--accent);
+  background: var(--bg);
+  box-shadow: var(--neu-inset-sm);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.nav-item.active i, .nav-item.active svg {
+  transform: translateY(-1px);
+}
+
+/* Tactile Deep Neumorphic Switches */
+.neu-switch {
+  width: 50px;
+  height: 28px;
+  border-radius: 20px;
+  background: var(--bg);
+  box-shadow: var(--neu-inset-sm);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.neu-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 3px 3px 6px rgba(184, 198, 216, 0.9), -2px -2px 5px #ffffff;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease;
+}
+
+.neu-switch.active {
+  background: rgba(37, 99, 235, 0.15);
+}
+
+.neu-switch.active::after {
+  transform: translateX(22px);
+  background: var(--accent);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.55);
+}
+
+/* Physical Hardware Rotary Dials */
+.analog-console-pod {
+  background: var(--bg);
+  border-radius: 28px;
+  padding: 16px 12px;
+  box-shadow: var(--neu-card-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dial-rack-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dial-header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.dial-name-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.dial-value-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-top: 1px;
+}
+
+.dial-interactive-ring {
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: var(--neu-inset-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  touch-action: none;
+  cursor: grab;
+}
+
+.dial-outer-ring-sm {
+  width: 68px;
+  height: 68px;
+}
+
+.dial-outer-ring-lg {
+  width: 86px;
+  height: 86px;
+}
+
+.dial-knob-sm {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f4f8fe 0%, #d8e4f4 100%);
+  box-shadow: var(--neu-dial);
+  position: relative;
+  transition: transform 0.05s linear;
+}
+
+.dial-knob-lg {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f4f8fe 0%, #d8e4f4 100%);
+  box-shadow: var(--neu-dial);
+  position: relative;
+  transition: transform 0.05s linear;
+}
+
+.knob-marker-indent {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.knob-pointer-line {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.dial-sub-text {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* Pill Option Groups */
+.pill-options-group {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 8px 2px;
+}
+
+.pill-opt-btn {
+  background: var(--bg);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--neu-pill);
+  border-radius: 16px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.pill-opt-btn.active {
+  box-shadow: var(--neu-pill-active);
+  color: var(--accent);
+  border-color: rgba(37, 99, 235, 0.3);
+}

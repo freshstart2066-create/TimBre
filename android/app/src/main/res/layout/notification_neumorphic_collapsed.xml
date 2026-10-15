@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/notif_collapsed_root"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:background="@drawable/notification_neu_bg"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/notif_art"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/notification_art_bg"
+        android:scaleType="centerCrop"
+        android:contentDescription="Album Art" />
+
+    <LinearLayout
+        android:id="@+id/notif_text_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/notif_art"
+        android:layout_toStartOf="@+id/notif_controls_block"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/notif_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="#18202d"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="TimBre Track" />
+
+        <TextView
+            android:id="@+id/notif_artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="#748398"
+            android:textSize="12sp"
+            android:text="Archangel DSP Engine" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/notif_controls_block"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/notif_btn_prev"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/notification_btn_neu"
+            android:src="@drawable/ic_notif_prev"
+            android:contentDescription="Previous" />
+
+        <ImageButton
+            android:id="@+id/notif_btn_play_pause"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/notification_btn_neu"
+            android:src="@drawable/ic_notif_play"
+            android:contentDescription="Play/Pause" />
+
+        <ImageButton
+            android:id="@+id/notif_btn_next"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/notification_btn_neu"
+            android:src="@drawable/ic_notif_next"
+            android:contentDescription="Next" />
+    </LinearLayout>
+</RelativeLayout>
