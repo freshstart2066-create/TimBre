@@ -1,0 +1,25 @@
+{
+  "name": "TimBre",
+  "short_name": "TimBre",
+  "description": "TimBre - Pure Neumorphic Hi-Fi Music Player with Archangel CoreAudio 10-Band EQ & Synced Lyrics",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ebf0f7",
+  "theme_color": "#ebf0f7",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["music", "audio", "multimedia"]
+}

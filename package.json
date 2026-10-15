@@ -1,0 +1,16 @@
+{
+  "name": "timbre-music-player",
+  "version": "1.0.0",
+  "description": "TimBre - Pure Neumorphic Music Player with Archangel CoreAudio 10-Band EQ & Synced Lyrics",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.1",
+    "@capacitor/core": "^7.0.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.1"
+  }
+}

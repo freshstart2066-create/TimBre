@@ -1,0 +1,107 @@
+[
+  {
+    "id": "blinding-lights-weeknd",
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "album": "After Hours",
+    "duration": "3:20",
+    "format": "Lossless FLAC 24-bit/96kHz",
+    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    "art": "assets/blinding_lights.jpg",
+    "isLocal": false
+  },
+  {
+    "id": "8c9fc31a0736",
+    "title": "full-globe-turn-on-radio",
+    "artist": "Local Device File",
+    "album": "Phone Storage",
+    "duration": "0:35",
+    "format": "WAV Audio",
+    "size": 884274,
+    "path": "C:\\Users\\Archangel\\Downloads\\heliosc2\\scripts\\fixtures\\voice\\full-globe-turn-on-radio.wav",
+    "src": "/api/stream/8c9fc31a0736",
+    "art": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+    "isLocal": true
+  },
+  {
+    "id": "dafb0b398b49",
+    "title": "test_voice",
+    "artist": "Local Device File",
+    "album": "Phone Storage",
+    "duration": "0:30",
+    "format": "MP3 Audio",
+    "size": 17280,
+    "path": "C:\\Users\\Archangel\\Downloads\\heliosc2\\test_voice.mp3",
+    "src": "/api/stream/dafb0b398b49",
+    "art": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+    "isLocal": true
+  },
+  {
+    "id": "a1ff78bc9bb9",
+    "title": "voice_demo",
+    "artist": "Local Device File",
+    "album": "Phone Storage",
+    "duration": "0:30",
+    "format": "MP3 Audio",
+    "size": 26064,
+    "path": "C:\\Users\\Archangel\\Downloads\\heliosc2\\voice_demo.mp3",
+    "src": "/api/stream/a1ff78bc9bb9",
+    "art": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+    "isLocal": true
+  },
+  {
+    "id": "demo-1",
+    "title": "Sicko Mode",
+    "artist": "Travis Scott",
+    "album": "Astroworld",
+    "duration": "5:12",
+    "format": "MP3 320kbps",
+    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    "art": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+    "isLocal": false
+  },
+  {
+    "id": "demo-3",
+    "title": "Godzilla (feat. Juice WRLD)",
+    "artist": "Eminem",
+    "album": "Music To Be Murdered By",
+    "duration": "3:30",
+    "format": "ALAC Lossless",
+    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    "art": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",
+    "isLocal": false
+  },
+  {
+    "id": "demo-4",
+    "title": "Industry Baby",
+    "artist": "Lil Nas X",
+    "album": "Montero",
+    "duration": "3:32",
+    "format": "Hi-Res 192kHz",
+    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    "art": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80",
+    "isLocal": false
+  },
+  {
+    "id": "demo-5",
+    "title": "Calm Down",
+    "artist": "Rema",
+    "album": "Rave & Roses",
+    "duration": "3:59",
+    "format": "FLAC Lossless",
+    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+    "art": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=600&q=80",
+    "isLocal": false
+  },
+  {
+    "id": "demo-6",
+    "title": "As It Was",
+    "artist": "Harry Styles",
+    "album": "Harry's House",
+    "duration": "2:47",
+    "format": "Lossless Audio",
+    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+    "art": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80",
+    "isLocal": false
+  }
+]

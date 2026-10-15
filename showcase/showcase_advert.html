@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timbre — 4K Archangel Neumorphic Showcase & Commercial Advert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #0b0f19;
+      --card-bg: rgba(22, 30, 48, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 10% 40%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 70%, rgba(99, 102, 241, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 24px 100px;
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #60a5fa;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #3b82f6;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #3b82f6;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--text-muted);
+      max-width: 780px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* VIDEO SECTION */
+    .hero-video-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 24px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.1);
+      margin-bottom: 80px;
+      position: relative;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .video-actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: #fff;
+      border: none;
+      box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.7);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* 4K GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 32px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(59, 130, 246, 0.15);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #111827;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #60a5fa;
+      letter-spacing: 0.05em;
+    }
+
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .file-meta {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    /* LIGHTBOX MODAL */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 15, 0.94);
+      backdrop-filter: blur(25px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 95vw;
+      max-height: 90vh;
+      position: relative;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Archangel Neumorphic Design System • 4K Master Suite
+      </div>
+      <h1>Timbre</h1>
+      <p class="subtitle">
+        High-definition broadcast presentation showcase and 4K keynote stills featuring The Weeknd's <em>Blinding Lights</em>, tactile notch dials, and 10-band CoreAudio studio equalizer.
+      </p>
+    </header>
+
+    <!-- CINEMATIC ADVERT VIDEO -->
+    <section class="hero-video-section">
+      <div class="section-header">
+        <div class="section-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Cinematic Showcase Advert (60 FPS • Full HD • Stereo Soundtrack)
+        </div>
+        <span class="file-meta">H.264 Video • AAC Audio • 24.0 Seconds</span>
+      </div>
+
+      <div class="video-wrapper">
+        <video controls playsinline preload="auto" poster="4K_01_FLAGSHIP_LINEUP.png">
+          <source src="timbre_premium_showcase_advert.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-actions">
+        <a href="timbre_premium_showcase_advert.mp4" download class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download Showcase Video (.mp4)
+        </a>
+        <a href="timbre_showcase_soundtrack.wav" download class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+          Download Stereo Soundtrack (.wav)
+        </a>
+        <a href="http://localhost:8080" target="_blank" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+          Open Live App (Port 8080)
+        </a>
+      </div>
+    </section>
+
+    <!-- 4K RENDER GALLERY -->
+    <section>
+      <div class="section-header">
+        <div class="section-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          4K Ultra HD Presentation Renders (3840 × 2160)
+        </div>
+        <span class="file-meta">Click any slide to inspect in full 4K resolution</span>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- SLIDE 1 -->
+        <div class="card">
+          <div class="card-img-wrap" onclick="openLightbox('4K_01_FLAGSHIP_LINEUP.png')">
+            <span class="card-badge">4K ULTRA HD</span>
+            <img src="4K_01_FLAGSHIP_LINEUP.png" alt="Flagship Lineup">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">01 • Flagship Trio Lineup</h3>
+            <p class="card-desc">Archangel keynote stage featuring Home Player, Now Playing with The Weeknd's Blinding Lights, and the 10-Band Studio Equalizer.</p>
+            <div class="card-footer">
+              <span class="file-meta">3840 × 2160 • PNG</span>
+              <a href="4K_01_FLAGSHIP_LINEUP.png" download class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">Download</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="card">
+          <div class="card-img-wrap" onclick="openLightbox('4K_02_NOW_PLAYING.png')">
+            <span class="card-badge">4K ULTRA HD</span>
+            <img src="4K_02_NOW_PLAYING.png" alt="Now Playing">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">02 • Now Playing (The Weeknd)</h3>
+            <p class="card-desc">Official After Hours album art, bit-perfect 24-bit/96kHz lossless badge, tactile notch rotary dials, and dynamic scrub bar.</p>
+            <div class="card-footer">
+              <span class="file-meta">3840 × 2160 • PNG</span>
+              <a href="4K_02_NOW_PLAYING.png" download class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">Download</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="card">
+          <div class="card-img-wrap" onclick="openLightbox('4K_03_STUDIO_EQUALIZER.png')">
+            <span class="card-badge">4K ULTRA HD</span>
+            <img src="4K_03_STUDIO_EQUALIZER.png" alt="Studio Equalizer">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">03 • 10-Band Studio Equalizer</h3>
+            <p class="card-desc">Full 32Hz–16kHz frequency control, live dBFS stereo peak meter, physical rotary hardware dials, and LUFS normalization.</p>
+            <div class="card-footer">
+              <span class="file-meta">3840 × 2160 • PNG</span>
+              <a href="4K_03_STUDIO_EQUALIZER.png" download class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">Download</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="card">
+          <div class="card-img-wrap" onclick="openLightbox('4K_04_HOME_PLAYER.png')">
+            <span class="card-badge">4K ULTRA HD</span>
+            <img src="4K_04_HOME_PLAYER.png" alt="Home Player">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">04 • Home Audio Dashboard</h3>
+            <p class="card-desc">Sculpted neumorphic buttons with dual ambient soft drop shadows, curated quick filters, and unclipped chassis design.</p>
+            <div class="card-footer">
+              <span class="file-meta">3840 × 2160 • PNG</span>
+              <a href="4K_04_HOME_PLAYER.png" download class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">Download</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="card">
+          <div class="card-img-wrap" onclick="openLightbox('4K_05_CELESTIAL_BOOT.png')">
+            <span class="card-badge">4K ULTRA HD</span>
+            <img src="4K_05_CELESTIAL_BOOT.png" alt="Celestial Boot">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">05 • Celestial Boot Animation</h3>
+            <p class="card-desc">OLED cosmic void featuring the star-man constellation, glowing solfa notes, glowing Timbre branding, and titanium bezel.</p>
+            <div class="card-footer">
+              <span class="file-meta">3840 × 2160 • PNG</span>
+              <a href="4K_05_CELESTIAL_BOOT.png" download class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">Download</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="card">
+          <div class="card-img-wrap" onclick="openLightbox('4K_06_LIBRARY_AND_FILES.png')">
+            <span class="card-badge">4K ULTRA HD</span>
+            <img src="4K_06_LIBRARY_AND_FILES.png" alt="Library and Files">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">06 • Library & Device File Storage</h3>
+            <p class="card-desc">Infinite playlist curation, local audio storage picker, and persistent mini-player featuring The Weeknd.</p>
+            <div class="card-footer">
+              <span class="file-meta">3840 × 2160 • PNG</span>
+              <a href="4K_06_LIBRARY_AND_FILES.png" download class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">Download</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <img id="lightbox-img" class="lightbox-img" src="" alt="4K Fullscreen View">
+    </div>
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "appId": "com.timbre.musicplayer",
+  "appName": "TimBre",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true,
+    "backgroundColor": "#ebf0f7",
+    "buildOptions": {
+      "keystorePath": "",
+      "keystoreAlias": ""
+    }
+  }
+}

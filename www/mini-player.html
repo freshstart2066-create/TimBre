@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TimBre — Clear Glassmorphic Mini Player</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    /* Ultra-Pure Crystalline Glassmorphism Optics */
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.35);
+      --glass-border-top: rgba(255, 255, 255, 0.7);
+      --glass-shine: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.15) 100%);
+      --accent-glow: #38bdf8;
+      --accent-grad: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Ambient Liquid Orb Background (Makes Clear Glass Pop Magnificently) */
+    .ambient-canvas-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(65px);
+      opacity: 0.65;
+      animation: orbDrift 18s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, #38bdf8 0%, #3b82f6 70%);
+      top: -10%;
+      left: 10%;
+      animation-duration: 14s;
+    }
+
+    .orb-2 {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #ec4899 0%, #8b5cf6 70%);
+      bottom: -15%;
+      right: 5%;
+      animation-duration: 20s;
+      animation-delay: -5s;
+    }
+
+    .orb-3 {
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, #10b981 0%, #06b6d4 70%);
+      top: 40%;
+      right: 35%;
+      animation-duration: 16s;
+      animation-delay: -9s;
+    }
+
+    @keyframes orbDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -25px) scale(1.12); }
+      100% { transform: translate(-25px, 30px) scale(0.92); }
+    }
+
+    /* Clear Glass Core Container */
+    .clear-glass-panel {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(36px) saturate(210%);
+      -webkit-backdrop-filter: blur(36px) saturate(210%);
+      border: 1px solid var(--glass-border);
+      border-top: 1.5px solid var(--glass-border-top);
+      border-left: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 
+        0 24px 48px -12px rgba(0, 0, 0, 0.45),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.65),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.15);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Prismatic Refraction Sheen Overlay */
+    .clear-glass-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.05) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Glass Buttons */
+    .glass-btn {
+      position: relative;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-top: 1.2px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #ffffff;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .glass-btn:hover {
+      background: rgba(255, 255, 255, 0.24);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-1.5px);
+      box-shadow: 
+        0 6px 18px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .glass-btn:active {
+      transform: scale(0.92) translateY(0);
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Primary Center Play Glass Button */
+    .glass-btn-primary {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.18) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 
+        0 8px 24px rgba(56, 189, 248, 0.35),
+        0 2px 6px rgba(0, 0, 0, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.85);
+    }
+
+    .glass-btn-primary:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.25) 100%);
+      box-shadow: 
+        0 10px 28px rgba(56, 189, 248, 0.5),
+        inset 0 1px 3px rgba(255, 255, 255, 0.95);
+      transform: scale(1.05) translateY(-1px);
+    }
+
+    /* Vinyl Album Disc (High-Gloss Rotating Record) */
+    .vinyl-disc {
+      position: relative;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #1e293b 0%, #0f172a 35%, #020617 70%, #000000 100%);
+      box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.45),
+        0 0 0 1.5px rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    /* Microgroove Rings */
+    .vinyl-disc::before {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      background: repeating-radial-gradient(
+        circle at center,
+        transparent 0,
+        transparent 3px,
+        rgba(255, 255, 255, 0.05) 3.5px,
+        rgba(255, 255, 255, 0.05) 4px
+      );
+      pointer-events: none;
+    }
+
+    /* Glossy Vinyl Light Streak Reflection */
+    .vinyl-disc::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 45deg,
+        rgba(255, 255, 255, 0.28) 0deg,
+        transparent 60deg,
+        transparent 180deg,
+        rgba(255, 255, 255, 0.28) 225deg,
+        transparent 280deg,
+        transparent 360deg
+      );
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .vinyl-spinning {
+      animation: vinylSpin 7s linear infinite;
+    }
+
+    .vinyl-paused {
+      animation-play-state: paused;
+    }
+
+    @keyframes vinylSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Vinyl Center Spindle / Label */
+    .vinyl-label-art {
+      width: 48%;
+      height: 48%;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      z-index: 2;
+    }
+
+    /* Crystal Seek Bar */
+    .crystal-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      position: relative;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    .crystal-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--accent-grad);
+      position: relative;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+      transition: width 0.1s linear;
+    }
+
+    .crystal-thumb {
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.4);
+      border: 1.5px solid rgba(56, 189, 248, 0.8);
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .crystal-track:hover .crystal-thumb {
+      opacity: 1;
+      transform: translateY(-50%) scale(1.15);
+    }
+
+    /* Audio Visualizer Spectrum Bars */
+    .spectrum-canvas {
+      width: 100%;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Glass Slider */
+    input[type=range].glass-slider {
+      -webkit-appearance: none;
+      background: rgba(255, 255, 255, 0.2);
+      height: 5px;
+      border-radius: 999px;
+      outline: none;
+    }
+
+    input[type=range].glass-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.8), 0 1px 4px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+    /* Live Equalizer Mini Bars */
+    .mini-eq-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 14px;
+    }
+    .mini-eq-bar {
+      width: 2.5px;
+      background: #38bdf8;
+      border-radius: 999px;
+      animation: miniEqPulse 0.8s ease-in-out infinite alternate;
+    }
+    .mini-eq-bar:nth-child(1) { height: 35%; animation-delay: 0.1s; }
+    .mini-eq-bar:nth-child(2) { height: 85%; animation-delay: 0.3s; }
+    .mini-eq-bar:nth-child(3) { height: 100%; animation-delay: 0.0s; }
+    .mini-eq-bar:nth-child(4) { height: 50%; animation-delay: 0.4s; }
+    .mini-eq-paused .mini-eq-bar {
+      animation-play-state: paused;
+      height: 25% !important;
+    }
+    @keyframes miniEqPulse {
+      0% { height: 20%; opacity: 0.45; }
+      100% { height: 100%; opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center p-4 antialiased overflow-hidden relative">
+
+  <!-- Ambient Dynamic Liquid Mesh Canvas (For Maximum Glassmorphism Depth) -->
+  <div class="ambient-canvas-wrap" id="ambientWrap">
+    <div class="ambient-orb orb-1" id="orb1"></div>
+    <div class="ambient-orb orb-2" id="orb2"></div>
+    <div class="ambient-orb orb-3" id="orb3"></div>
+  </div>
+
+  <!-- Background Theme Selector Pill (Floating at top) -->
+  <div class="fixed top-4 z-50 flex items-center gap-2 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full px-3 py-1.5 shadow-lg text-xs font-semibold text-white/80">
+    <span class="text-white/50 text-[11px] uppercase tracking-wider pl-1">Backdrop:</span>
+    <button onclick="setBackdrop('aurora')" class="px-2 py-0.5 rounded-full bg-white/20 hover:bg-white/30 text-white transition">Liquid Aurora</button>
+    <button onclick="setBackdrop('neon')" class="px-2 py-0.5 rounded-full bg-white/10 hover:bg-white/20 text-white/70 transition">Cyber Neon</button>
+    <button onclick="setBackdrop('obsidian')" class="px-2 py-0.5 rounded-full bg-white/10 hover:bg-white/20 text-white/70 transition">Obsidian</button>
+    <button onclick="setBackdrop('clear')" class="px-2 py-0.5 rounded-full bg-white/10 hover:bg-white/20 text-white/70 transition">Translucent</button>
+  </div>
+
+  <!-- Form Factor Mode Switcher (Capsule Pill vs Floating Card vs Studio) -->
+  <div class="fixed top-14 z-50 flex items-center gap-1.5 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full p-1 shadow-lg text-xs font-semibold">
+    <button id="modeBtnCard" onclick="switchMode('card')" class="px-3 py-1 rounded-full bg-white/25 text-white shadow-sm transition">
+      Floating Card
+    </button>
+    <button id="modeBtnCapsule" onclick="switchMode('capsule')" class="px-3 py-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition">
+      Capsule Pill
+    </button>
+    <button id="modeBtnStudio" onclick="switchMode('studio')" class="px-3 py-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition">
+      Expanded Studio
+    </button>
+  </div>
+
+  <!-- ================= MAIN CLEAR GLASS MINI PLAYER ================= -->
+  <div id="miniPlayerContainer" class="relative z-10 w-full max-w-[420px] transition-all duration-300">
+    
+    <!-- THE CLEAR GLASS PANEL -->
+    <div id="glassPanel" class="clear-glass-panel rounded-[32px] p-5 sm:p-6 text-white flex flex-col gap-4">
+
+      <!-- TOP HEADER / BRAND & AUDIO BADGE -->
+      <div class="flex items-center justify-between text-xs font-semibold tracking-wide text-white/80">
+        <div class="flex items-center gap-2">
+          <!-- Glass Capsule Audio Format Badge -->
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 border border-white/30 backdrop-blur-md text-[11px] font-bold text-sky-300 shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+            24-BIT HI-FI
+          </span>
+          <span class="text-white/50 text-[11px] font-medium" id="audioRoutingText">Crystal Output</span>
+        </div>
+
+        <!-- Live Equalizer Animation & Local File Picker Button -->
+        <div class="flex items-center gap-2">
+          <div id="miniEq" class="mini-eq-bars mini-eq-paused">
+            <div class="mini-eq-bar"></div>
+            <div class="mini-eq-bar"></div>
+            <div class="mini-eq-bar"></div>
+            <div class="mini-eq-bar"></div>
+          </div>
+          
+          <!-- Open Local MP3 / Audio File -->
+          <label class="glass-btn w-7 h-7 rounded-full text-white/80 hover:text-white cursor-pointer" title="Load your own music file">
+            <input type="file" id="localFileInput" accept="audio/*" class="hidden">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+          </label>
+        </div>
+      </div>
+
+      <!-- MAIN MEDIA ROW: VINYL DISC + TRACK INFO + HEART -->
+      <div class="flex items-center gap-4">
+        
+        <!-- Rotating Vinyl Disc / Glass Album Art -->
+        <div id="vinylDisc" class="vinyl-disc w-[68px] h-[68px] sm:w-[76px] sm:h-[76px] vinyl-spinning vinyl-paused cursor-pointer" onclick="togglePlay()">
+          <img id="vinylCover" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300&q=80" alt="Cover" class="vinyl-label-art">
+        </div>
+
+        <!-- Track Title & Artist Meta -->
+        <div class="flex-1 min-w-0 flex flex-col justify-center">
+          <div class="flex items-center gap-2">
+            <h3 id="trackTitle" class="text-base sm:text-lg font-extrabold text-white truncate drop-shadow-sm">
+              Crystal Horizon
+            </h3>
+          </div>
+          <p id="trackArtist" class="text-xs sm:text-sm font-medium text-white/70 truncate mt-0.5">
+            TimBre Audio Lab • Hi-Res
+          </p>
+          <div class="flex items-center gap-2 mt-1 text-[11px] font-semibold text-white/50">
+            <span id="genreBadge" class="text-sky-300">Ambient Wave</span>
+            <span>•</span>
+            <span id="trackBitrate">Lossless FLAC</span>
+          </div>
+        </div>
+
+        <!-- Heart / Favorite Button -->
+        <button id="likeBtn" onclick="toggleLike()" class="glass-btn w-10 h-10 rounded-full text-white/70 hover:text-red-400">
+          <svg id="heartIcon" class="w-5 h-5 transition-transform active:scale-125" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- CRYSTAL SCRUB SEEK BAR & PROMINENT TIME PLAYED / TIME LEFT BADGES -->
+      <div class="flex flex-col gap-2">
+        <div id="crystalTrack" class="crystal-track" onclick="seekByClick(event)" title="Scrub Track">
+          <div id="crystalFill" class="crystal-fill" style="width: 0%;">
+            <div class="crystal-thumb"></div>
+          </div>
+        </div>
+        
+        <!-- Dedicated Time Indicators: Time Played vs Time Left -->
+        <div class="flex items-center justify-between text-xs font-semibold tracking-wide">
+          <!-- Time Played Badge -->
+          <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-sm">
+            <svg class="w-3 h-3 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span class="text-white/60 text-[10px] uppercase font-extrabold tracking-wider">Played</span>
+            <span id="currentTimeText" class="font-mono font-bold text-sky-300 text-xs">0:00</span>
+          </div>
+
+          <!-- Live Playback Status Pill -->
+          <div class="flex items-center gap-1 text-[10px] uppercase font-bold text-white/50 tracking-wider">
+            <span id="playbackStatusDot" class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+            <span id="playbackStatusText">Ready</span>
+          </div>
+
+          <!-- Time Left Badge -->
+          <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-sm">
+            <span class="text-white/60 text-[10px] uppercase font-extrabold tracking-wider">Left</span>
+            <span id="remainingTimeText" class="font-mono font-bold text-rose-300 text-xs">-3:24</span>
+            <svg class="w-3 h-3 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 8 14"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDIO AUDIO SPECTRUM VISUALIZER (Hidden in capsule mode, visible in card/studio) -->
+      <div id="visualizerBlock" class="flex flex-col gap-1">
+        <canvas id="spectrumCanvas" class="spectrum-canvas" width="380" height="38"></canvas>
+      </div>
+
+      <!-- PLAYBACK CONTROLS ROW -->
+      <div class="flex items-center justify-between pt-1">
+        
+        <!-- Shuffle Toggle -->
+        <button id="shuffleBtn" onclick="toggleShuffle()" class="glass-btn w-9 h-9 rounded-full text-white/70 hover:text-white" title="Shuffle">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 3 21 3 21 8"/>
+            <line x1="4" y1="20" x2="21" y2="3"/>
+            <polyline points="21 16 21 21 16 21"/>
+            <line x1="15" y1="15" x2="21" y2="21"/>
+            <line x1="4" y1="4" x2="9" y2="9"/>
+          </svg>
+        </button>
+
+        <!-- Previous Track Button -->
+        <button onclick="prevTrack()" class="glass-btn w-10 h-10 rounded-full text-white hover:text-sky-300" title="Previous Track">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="19 20 9 12 19 4 19 20"/>
+            <line x1="5" y1="19" x2="5" y2="5"/>
+          </svg>
+        </button>
+
+        <!-- PRIMARY CENTER GLASS PLAY / PAUSE BUTTON -->
+        <button id="mainPlayBtn" onclick="togglePlay()" class="glass-btn glass-btn-primary w-14 h-14 rounded-full text-white" title="Play / Pause">
+          <!-- Play Icon -->
+          <svg id="playIconSvg" class="w-7 h-7 translate-x-0.5" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6 3 20 12 6 21 6 3"/>
+          </svg>
+          <!-- Pause Icon (hidden initially) -->
+          <svg id="pauseIconSvg" class="w-7 h-7 hidden" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16" rx="1.5"/>
+            <rect x="14" y="4" width="4" height="16" rx="1.5"/>
+          </svg>
+        </button>
+
+        <!-- Next Track Button -->
+        <button onclick="nextTrack()" class="glass-btn w-10 h-10 rounded-full text-white hover:text-sky-300" title="Next Track">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 4 15 12 5 20 5 4"/>
+            <line x1="19" y1="5" x2="19" y2="19"/>
+          </svg>
+        </button>
+
+        <!-- Repeat Toggle -->
+        <button id="repeatBtn" onclick="toggleRepeat()" class="glass-btn w-9 h-9 rounded-full text-white/70 hover:text-white" title="Repeat">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- EXPANDED STUDIO EXTRA CONTROLS (Volume + Playlist Drawer) -->
+      <div id="studioExtras" class="flex flex-col gap-3 pt-2 border-t border-white/15">
+        
+        <!-- Volume Slider Row -->
+        <div class="flex items-center gap-3">
+          <button onclick="toggleMute()" class="text-white/70 hover:text-white transition">
+            <svg id="volIcon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+          </button>
+          <input type="range" id="volSlider" class="glass-slider flex-1" min="0" max="1" step="0.01" value="0.8" oninput="setVolume(this.value)">
+          <span id="volText" class="text-[11px] font-bold text-white/60 w-8 text-right">80%</span>
+        </div>
+
+        <!-- Quick Playlist Queue Pill Selector -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+          <span class="text-white/50 text-[10px] uppercase font-bold tracking-wider">Queue:</span>
+          <div id="playlistPills" class="flex items-center gap-1.5 flex-nowrap"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Audio Element (Internal Synthesizer + Local File Support) -->
+  <audio id="audioEngine" preload="auto"></audio>
+
+  <!-- JAVASCRIPT: REAL AUDIO SYNTHESIS + GLASS ENGINE + VISUALIZER -->
+  <script>
+    // Playlist with High-Fidelity Synthesized Tracks & Demo Presets
+    const PLAYLIST = [
+      {
+        title: "Crystal Horizon",
+        artist: "TimBre Audio Lab",
+        genre: "Chill Ambient",
+        duration: 204,
+        cover: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300&q=80",
+        tempo: 96,
+        rootFreq: 220.00 // A3
+      },
+      {
+        title: "Neon Reflections",
+        artist: "Glassmorphic Dream",
+        genre: "Synthwave Hi-Fi",
+        duration: 238,
+        cover: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=300&q=80",
+        tempo: 120,
+        rootFreq: 174.61 // F3
+      },
+      {
+        title: "Acoustic Reverie",
+        artist: "Pure Neumorph",
+        genre: "Acoustic Modern",
+        duration: 182,
+        cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&q=80",
+        tempo: 84,
+        rootFreq: 261.63 // C4
+      }
+    ];
+
+    let currentTrackIdx = 0;
+    let isPlaying = false;
+    let isLiked = false;
+    let isShuffle = false;
+    let isRepeat = false;
+    let currentTime = 0;
+    let duration = PLAYLIST[0].duration;
+    let currentMode = 'card';
+    let isMuted = false;
+    let savedVolume = 0.8;
+
+    // Web Audio Synthesizer Engine (Allows playing REAL harmonic audio anywhere with ZERO external files!)
+    let audioCtx = null;
+    let synthInterval = null;
+    let analyser = null;
+    let dataArray = null;
+    let bufferLength = 0;
+    let isUsingLocalFile = false;
+    const audioElement = document.getElementById('audioEngine');
+
+    // DOM Elements
+    const glassPanel = document.getElementById('glassPanel');
+    const vinylDisc = document.getElementById('vinylDisc');
+    const vinylCover = document.getElementById('vinylCover');
+    const trackTitle = document.getElementById('trackTitle');
+    const trackArtist = document.getElementById('trackArtist');
+    const genreBadge = document.getElementById('genreBadge');
+    const playIconSvg = document.getElementById('playIconSvg');
+    const pauseIconSvg = document.getElementById('pauseIconSvg');
+    const crystalFill = document.getElementById('crystalFill');
+    const currentTimeText = document.getElementById('currentTimeText');
+    const remainingTimeText = document.getElementById('remainingTimeText');
+    const miniEq = document.getElementById('miniEq');
+    const spectrumCanvas = document.getElementById('spectrumCanvas');
+    const canvasCtx = spectrumCanvas.getContext('2d');
+    const volSlider = document.getElementById('volSlider');
+    const volText = document.getElementById('volText');
+    const playlistPills = document.getElementById('playlistPills');
+
+    // Initialize Web Audio Context
+    function initAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 64;
+        bufferLength = analyser.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+        
+        // Connect HTML Audio Element to Analyser for local files
+        try {
+          const source = audioCtx.createMediaElementSource(audioElement);
+          source.connect(analyser);
+          analyser.connect(audioCtx.destination);
+        } catch (e) {
+          // MediaElementSource already connected or ignored
+        }
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Play synthesized warm ambient chord & beat notes
+    function triggerSynthChord(freq) {
+      if (!audioCtx || !isPlaying || isUsingLocalFile) return;
+
+      const now = audioCtx.currentTime;
+      const chords = [freq, freq * 1.25, freq * 1.5, freq * 2]; // Major harmonic triad + octave
+      
+      chords.forEach((f, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        osc.type = i === 0 ? 'triangle' : 'sine';
+        osc.frequency.setValueAtTime(f, now);
+
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime((0.08 / (i + 1)) * volSlider.value, now + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+
+        osc.connect(gain);
+        gain.connect(analyser);
+        analyser.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 1.85);
+      });
+    }
+
+    // Update track display
+    function loadTrack(index) {
+      const track = PLAYLIST[index];
+      currentTrackIdx = index;
+      isUsingLocalFile = false;
+      currentTime = 0;
+      duration = track.duration;
+
+      trackTitle.textContent = track.title;
+      trackArtist.textContent = track.artist;
+      genreBadge.textContent = track.genre;
+      vinylCover.src = track.cover;
+
+      updateProgressUI();
+      renderPlaylistPills();
+    }
+
+    // Toggle Play/Pause
+    function togglePlay() {
+      initAudioContext();
+      isPlaying = !isPlaying;
+
+      const dot = document.getElementById('playbackStatusDot');
+      const text = document.getElementById('playbackStatusText');
+
+      if (isPlaying) {
+        playIconSvg.classList.add('hidden');
+        pauseIconSvg.classList.remove('hidden');
+        vinylDisc.classList.remove('vinyl-paused');
+        miniEq.classList.remove('mini-eq-paused');
+
+        if (dot) {
+          dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping";
+        }
+        if (text) {
+          text.textContent = "Playing";
+          text.className = "text-emerald-400 font-extrabold";
+        }
+
+        if (isUsingLocalFile) {
+          audioElement.play().catch(e => console.log(e));
+        } else {
+          startSynthPlayback();
+        }
+      } else {
+        playIconSvg.classList.remove('hidden');
+        pauseIconSvg.classList.add('hidden');
+        vinylDisc.classList.add('vinyl-paused');
+        miniEq.classList.add('mini-eq-paused');
+
+        if (dot) {
+          dot.className = "w-1.5 h-1.5 rounded-full bg-slate-500";
+        }
+        if (text) {
+          text.textContent = "Paused";
+          text.className = "text-white/50 font-bold";
+        }
+
+        if (isUsingLocalFile) {
+          audioElement.pause();
+        } else {
+          stopSynthPlayback();
+        }
+      }
+    }
+
+    // Synthesizer playback loop
+    let progressTimer = null;
+    function startSynthPlayback() {
+      stopSynthPlayback();
+      const track = PLAYLIST[currentTrackIdx];
+      const intervalMs = (60 / track.tempo) * 1000;
+
+      // Play first note immediately
+      triggerSynthChord(track.rootFreq);
+
+      synthInterval = setInterval(() => {
+        if (!isPlaying) return;
+        const variations = [1, 1.125, 1.25, 1.333, 1.5];
+        const nextFreq = track.rootFreq * variations[Math.floor(Math.random() * variations.length)];
+        triggerSynthChord(nextFreq);
+      }, intervalMs);
+
+      // Progress tick timer
+      progressTimer = setInterval(() => {
+        if (!isPlaying) return;
+        currentTime += 1;
+        if (currentTime >= duration) {
+          if (isRepeat) {
+            currentTime = 0;
+          } else {
+            nextTrack();
+            return;
+          }
+        }
+        updateProgressUI();
+      }, 1000);
+    }
+
+    function stopSynthPlayback() {
+      if (synthInterval) clearInterval(synthInterval);
+      if (progressTimer) clearInterval(progressTimer);
+    }
+
+    function nextTrack() {
+      let nextIdx;
+      if (isShuffle) {
+        nextIdx = Math.floor(Math.random() * PLAYLIST.length);
+      } else {
+        nextIdx = (currentTrackIdx + 1) % PLAYLIST.length;
+      }
+      loadTrack(nextIdx);
+      if (isPlaying) {
+        startSynthPlayback();
+      }
+    }
+
+    function prevTrack() {
+      if (currentTime > 4) {
+        currentTime = 0;
+        updateProgressUI();
+        return;
+      }
+      const prevIdx = (currentTrackIdx - 1 + PLAYLIST.length) % PLAYLIST.length;
+      loadTrack(prevIdx);
+      if (isPlaying) {
+        startSynthPlayback();
+      }
+    }
+
+    // Format seconds into M:SS
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function updateProgressUI() {
+      const pct = Math.min(100, (currentTime / duration) * 100);
+      crystalFill.style.width = `${pct}%`;
+      currentTimeText.textContent = formatTime(currentTime);
+      const remaining = Math.max(0, duration - currentTime);
+      remainingTimeText.textContent = `-${formatTime(remaining)}`;
+    }
+
+    function seekByClick(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+      currentTime = ratio * duration;
+      if (isUsingLocalFile) {
+        audioElement.currentTime = currentTime;
+      }
+      updateProgressUI();
+    }
+
+    // Like toggle
+    function toggleLike() {
+      isLiked = !isLiked;
+      const heart = document.getElementById('heartIcon');
+      if (isLiked) {
+        heart.setAttribute('fill', '#f43f5e');
+        heart.setAttribute('stroke', '#f43f5e');
+      } else {
+        heart.setAttribute('fill', 'none');
+        heart.setAttribute('stroke', 'currentColor');
+      }
+    }
+
+    function toggleShuffle() {
+      isShuffle = !isShuffle;
+      const btn = document.getElementById('shuffleBtn');
+      btn.classList.toggle('text-sky-300', isShuffle);
+      btn.classList.toggle('bg-white/30', isShuffle);
+    }
+
+    function toggleRepeat() {
+      isRepeat = !isRepeat;
+      const btn = document.getElementById('repeatBtn');
+      btn.classList.toggle('text-sky-300', isRepeat);
+      btn.classList.toggle('bg-white/30', isRepeat);
+    }
+
+    // Volume control
+    function setVolume(val) {
+      const v = parseFloat(val);
+      audioElement.volume = v;
+      volText.textContent = `${Math.round(v * 100)}%`;
+      volSlider.value = v;
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      if (isMuted) {
+        savedVolume = volSlider.value;
+        setVolume(0);
+      } else {
+        setVolume(savedVolume || 0.8);
+      }
+    }
+
+    // Visualizer Canvas render loop
+    function drawVisualizer() {
+      requestAnimationFrame(drawVisualizer);
+
+      const w = spectrumCanvas.width;
+      const h = spectrumCanvas.height;
+      canvasCtx.clearRect(0, 0, w, h);
+
+      if (!analyser || !isPlaying) {
+        // Subtle resting baseline
+        canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        for (let i = 0; i < 28; i++) {
+          const barW = (w / 28) - 3;
+          const x = i * (barW + 3);
+          canvasCtx.fillRect(x, h - 3, barW, 2);
+        }
+        return;
+      }
+
+      analyser.getByteFrequencyData(dataArray);
+
+      const barCount = 26;
+      const barWidth = (w / barCount) - 3;
+
+      for (let i = 0; i < barCount; i++) {
+        const val = dataArray[i] || 0;
+        const barHeight = Math.max(3, (val / 255) * (h - 4));
+        const x = i * (barWidth + 3);
+        const y = h - barHeight;
+
+        // Glass Gradient for bars
+        const grad = canvasCtx.createLinearGradient(0, y, 0, h);
+        grad.addColorStop(0, '#38bdf8');
+        grad.addColorStop(0.5, '#818cf8');
+        grad.addColorStop(1, 'rgba(192, 132, 252, 0.6)');
+
+        canvasCtx.fillStyle = grad;
+        canvasCtx.beginPath();
+        canvasCtx.roundRect(x, y, barWidth, barHeight, [3, 3, 0, 0]);
+        canvasCtx.fill();
+      }
+    }
+
+    // Form Factor Switcher (Card vs Capsule vs Studio)
+    function switchMode(mode) {
+      currentMode = mode;
+      const container = document.getElementById('miniPlayerContainer');
+      const studioExtras = document.getElementById('studioExtras');
+      const visualizerBlock = document.getElementById('visualizerBlock');
+
+      // Update switcher buttons
+      ['Card', 'Capsule', 'Studio'].forEach(m => {
+        const btn = document.getElementById(`modeBtn${m}`);
+        if (m.toLowerCase() === mode) {
+          btn.className = "px-3 py-1 rounded-full bg-white/25 text-white shadow-sm transition";
+        } else {
+          btn.className = "px-3 py-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition";
+        }
+      });
+
+      if (mode === 'capsule') {
+        container.className = "relative z-10 w-full max-w-[370px] transition-all duration-300";
+        glassPanel.className = "clear-glass-panel rounded-[28px] p-4 text-white flex flex-col gap-2.5";
+        studioExtras.classList.add('hidden');
+        visualizerBlock.classList.add('hidden');
+        vinylDisc.className = "vinyl-disc w-[48px] h-[48px] vinyl-spinning cursor-pointer " + (isPlaying ? "" : "vinyl-paused");
+      } else if (mode === 'studio') {
+        container.className = "relative z-10 w-full max-w-[460px] transition-all duration-300";
+        glassPanel.className = "clear-glass-panel rounded-[36px] p-6 text-white flex flex-col gap-4";
+        studioExtras.classList.remove('hidden');
+        visualizerBlock.classList.remove('hidden');
+        vinylDisc.className = "vinyl-disc w-[68px] h-[68px] sm:w-[76px] sm:h-[76px] vinyl-spinning cursor-pointer " + (isPlaying ? "" : "vinyl-paused");
+      } else { // Card
+        container.className = "relative z-10 w-full max-w-[420px] transition-all duration-300";
+        glassPanel.className = "clear-glass-panel rounded-[32px] p-5 text-white flex flex-col gap-4";
+        studioExtras.classList.add('hidden');
+        visualizerBlock.classList.remove('hidden');
+        vinylDisc.className = "vinyl-disc w-[68px] h-[68px] sm:w-[76px] sm:h-[76px] vinyl-spinning cursor-pointer " + (isPlaying ? "" : "vinyl-paused");
+      }
+    }
+
+    // Backdrop presets
+    function setBackdrop(type) {
+      const orb1 = document.getElementById('orb1');
+      const orb2 = document.getElementById('orb2');
+      const orb3 = document.getElementById('orb3');
+      const wrap = document.getElementById('ambientWrap');
+
+      if (type === 'aurora') {
+        document.body.className = "bg-slate-950 text-white min-h-screen flex items-center justify-center p-4 antialiased overflow-hidden relative";
+        wrap.style.opacity = "1";
+        orb1.style.background = "radial-gradient(circle, #38bdf8 0%, #3b82f6 70%)";
+        orb2.style.background = "radial-gradient(circle, #ec4899 0%, #8b5cf6 70%)";
+        orb3.style.background = "radial-gradient(circle, #10b981 0%, #06b6d4 70%)";
+      } else if (type === 'neon') {
+        document.body.className = "bg-black text-white min-h-screen flex items-center justify-center p-4 antialiased overflow-hidden relative";
+        wrap.style.opacity = "1";
+        orb1.style.background = "radial-gradient(circle, #f43f5e 0%, #d946ef 70%)";
+        orb2.style.background = "radial-gradient(circle, #06b6d4 0%, #3b82f6 70%)";
+        orb3.style.background = "radial-gradient(circle, #eab308 0%, #ef4444 70%)";
+      } else if (type === 'obsidian') {
+        document.body.className = "bg-[#090b10] text-white min-h-screen flex items-center justify-center p-4 antialiased overflow-hidden relative";
+        wrap.style.opacity = "0.3";
+        orb1.style.background = "radial-gradient(circle, #334155 0%, #0f172a 70%)";
+        orb2.style.background = "radial-gradient(circle, #1e293b 0%, #020617 70%)";
+        orb3.style.background = "radial-gradient(circle, #475569 0%, #1e293b 70%)";
+      } else if (type === 'clear') {
+        document.body.className = "bg-transparent text-white min-h-screen flex items-center justify-center p-4 antialiased overflow-hidden relative";
+        wrap.style.opacity = "0";
+      }
+    }
+
+    // Render Quick Queue Pills
+    function renderPlaylistPills() {
+      playlistPills.innerHTML = '';
+      PLAYLIST.forEach((track, idx) => {
+        const pill = document.createElement('button');
+        const isActive = idx === currentTrackIdx;
+        pill.className = `px-2.5 py-1 rounded-full whitespace-nowrap text-[11px] font-semibold transition ${
+          isActive 
+            ? 'bg-sky-400/30 text-sky-200 border border-sky-400/50 shadow-sm' 
+            : 'bg-white/10 text-white/60 hover:text-white hover:bg-white/15 border border-white/15'
+        }`;
+        pill.textContent = track.title;
+        pill.onclick = () => {
+          loadTrack(idx);
+          if (isPlaying) {
+            startSynthPlayback();
+          }
+        };
+        playlistPills.appendChild(pill);
+      });
+    }
+
+    // Local file picker handler
+    document.getElementById('localFileInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      initAudioContext();
+      const objectUrl = URL.createObjectURL(file);
+      audioElement.src = objectUrl;
+      isUsingLocalFile = true;
+
+      trackTitle.textContent = file.name.replace(/\.[^/.]+$/, "");
+      trackArtist.textContent = "Local Storage Audio";
+      genreBadge.textContent = "Local Media";
+      document.getElementById('trackBitrate').textContent = (file.size / (1024 * 1024)).toFixed(1) + " MB";
+
+      audioElement.onloadedmetadata = function() {
+        duration = audioElement.duration || 180;
+        currentTime = 0;
+        updateProgressUI();
+        if (!isPlaying) togglePlay();
+      };
+
+      audioElement.ontimeupdate = function() {
+        currentTime = audioElement.currentTime;
+        updateProgressUI();
+      };
+
+      audioElement.onended = function() {
+        nextTrack();
+      };
+    });
+
+    // Initialize on load
+    loadTrack(0);
+    renderPlaylistPills();
+    drawVisualizer();
+    switchMode('card');
+  </script>
+</body>
+</html>

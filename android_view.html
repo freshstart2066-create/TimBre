@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimBre — Android Mobile UI (Samsung Galaxy S21)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #07090e;
+      --bg-card: #0d111a;
+      --surface-deep: #050811;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --neu-convex: linear-gradient(145deg, #161e2e, #0c111c);
+      --neu-emboss: 10px 10px 24px rgba(0, 0, 0, 0.8), -6px -6px 20px rgba(255, 255, 255, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.09) 0%, transparent 60%),
+        radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 15% 85%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+    }
+
+    /* TOP HEADER */
+    .top-bar {
+      width: 100%;
+      max-width: 1400px;
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: var(--neu-convex);
+      box-shadow: var(--neu-emboss);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .back-btn:hover {
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      transform: translateX(-2px);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-android {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 999px;
+      color: #60a5fa;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: #3b82f6;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #3b82f6;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* MAIN STAGE */
+    .showcase-stage {
+      width: 100%;
+      max-width: 1400px;
+      padding: 40px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 430px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 1080px) {
+      .showcase-stage {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 48px;
+      }
+    }
+
+    /* LEFT INFO PANEL */
+    .info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .project-tag {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* SPEC GRID */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .spec-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .spec-card {
+      background: var(--neu-convex);
+      box-shadow: var(--neu-emboss);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .spec-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .spec-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .spec-val {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .spec-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ACTIONS */
+    .action-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn-glow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.5);
+      border: none;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .btn-glow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.7);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      background: var(--neu-convex);
+      box-shadow: var(--neu-emboss);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #60a5fa;
+    }
+
+    /* ==========================================================================
+       AUTHENTIC SAMSUNG GALAXY S21 ANDROID CHASSIS
+       ========================================================================== */
+    .device-showcase-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .device-chassis {
+      width: 392px;
+      height: 820px;
+      background: #111520;
+      border-radius: 54px;
+      padding: 12px;
+      position: relative;
+      box-shadow: 
+        0 40px 90px -15px rgba(0, 0, 0, 0.95),
+        0 0 50px rgba(59, 130, 246, 0.15),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.12),
+        inset 0 0 0 6px #1b2234;
+    }
+
+    @media (max-width: 440px) {
+      .device-chassis {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+    }
+
+    .device-screen {
+      width: 100%;
+      height: 100%;
+      background: #ebf0f7;
+      border-radius: 44px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 440px) {
+      .device-screen {
+        border-radius: 0;
+        border: none;
+      }
+    }
+
+    /* Android Status Bar */
+    .android-status-bar {
+      height: 32px;
+      padding: 0 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #1e293b;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      z-index: 20;
+      background: #ebf0f7;
+      position: relative;
+    }
+
+    .camera-punchhole {
+      width: 10px;
+      height: 10px;
+      background: #000;
+      border-radius: 50%;
+      border: 1.5px solid #2d3748;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .status-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Embedded App Frame */
+    .app-frame {
+      flex: 1;
+      width: 100%;
+      border: none;
+      background: #ebf0f7;
+    }
+
+    /* Android Gesture Pill */
+    .android-nav-bar {
+      height: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ebf0f7;
+      z-index: 20;
+    }
+
+    .gesture-pill {
+      width: 72px;
+      height: 4px;
+      background: #94a3b8;
+      border-radius: 999px;
+    }
+
+    .device-caption {
+      margin-top: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="brand-group">
+      <a href="../../index.html" class="back-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Portfolio
+      </a>
+      <div class="brand-title">
+        TimBre <span>//</span> Mobile UI
+      </div>
+    </div>
+    <div class="badge-android">
+      <span class="badge-dot"></span>
+      SAMSUNG S21 • ANDROID BUILD
+    </div>
+  </header>
+
+  <!-- MAIN STAGE -->
+  <main class="showcase-stage">
+    
+    <!-- LEFT: OVERVIEW & SPECS -->
+    <div class="info-panel">
+      <div>
+        <span class="project-tag">Pure Neumorphic Hi-Fi Audio Player • Android APK</span>
+        <h1 class="hero-h1">TimBre Music Player (Android)</h1>
+      </div>
+
+      <p class="hero-lead">
+        Engineered with bit-perfect Web Audio API DSP, parametric 10-band studio equalizer, and sculpted neumorphic rotary hardware dials. Native Android APK packaged via Capacitor with hardware-accelerated fluid visualizers and zero UI dropped frames.
+      </p>
+
+      <div class="spec-grid">
+        <div class="spec-card">
+          <span class="spec-label">Audio Engine</span>
+          <div class="spec-val" style="color: #3b82f6;">Web Audio DSP</div>
+          <p class="spec-desc">32Hz–16kHz 10-band studio parametric equalizer & peak meters</p>
+        </div>
+
+        <div class="spec-card">
+          <span class="spec-label">Android Build</span>
+          <div class="spec-val" style="color: #10b981;">v1.0.0 APK</div>
+          <p class="spec-desc">Hardware-optimized for Samsung Galaxy S21 & modern Android</p>
+        </div>
+
+        <div class="spec-card">
+          <span class="spec-label">Visual Design</span>
+          <div class="spec-val">Neumorphic 4K</div>
+          <p class="spec-desc">Sculpted convex/concave tactile dials with haptic feedback</p>
+        </div>
+
+        <div class="spec-card">
+          <span class="spec-label">Audio Fidelity</span>
+          <div class="spec-val">24-Bit / 96kHz</div>
+          <p class="spec-desc">Bit-perfect lossless streaming with dynamic lyrics engine</p>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <a href="Timbre-v1.0.0-Samsung-S21.apk" download="Timbre-v1.0.0-Samsung-S21.apk" class="btn-glow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Samsung S21 APK (9.97 MB)
+        </a>
+        <a href="index.html" target="_blank" class="btn-ghost">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Open Fullscreen Web App
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: SAMSUNG GALAXY S21 DEVICE -->
+    <div class="device-showcase-wrap">
+      <div class="device-chassis">
+        <div class="device-screen">
+          
+          <!-- Status Bar -->
+          <div class="android-status-bar">
+            <span id="liveClock">10:24</span>
+            <div class="camera-punchhole"></div>
+            <div class="status-icons">
+              <span>5G</span>
+              <span>100%</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+            </div>
+          </div>
+
+          <!-- Embedded Real TimBre App -->
+          <iframe src="index.html" class="app-frame" title="TimBre Interactive Audio Player" allow="autoplay; microphone"></iframe>
+
+          <!-- Gesture Pill -->
+          <div class="android-nav-bar">
+            <div class="gesture-pill"></div>
+          </div>
+
+        </div>
+      </div>
+      <p class="device-caption">Live Touch-Enabled Samsung Galaxy S21 Simulation</p>
+    </div>
+
+  </main>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('liveClock').innerText = `${h}:${m}`;
+    }
+    updateClock();
+    setInterval(updateClock, 30000);
+  </script>
+</body>
+</html>

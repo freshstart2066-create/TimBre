@@ -1,0 +1,22 @@
+[
+  {
+    "id": "fav",
+    "name": "Favorites",
+    "tracks": []
+  },
+  {
+    "id": "hifi",
+    "name": "Hi-Fi Master Lossless",
+    "tracks": []
+  },
+  {
+    "id": "chill",
+    "name": "Late Night Chill",
+    "tracks": []
+  },
+  {
+    "id": "pl-1791770764592",
+    "name": "Galaxy Beats",
+    "tracks": []
+  }
+]
